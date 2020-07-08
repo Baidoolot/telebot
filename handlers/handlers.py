@@ -15,6 +15,7 @@ class Univer(StatesGroup):
     faculty = State()
     specialty = State()
     contacts = State()
+    ort = State()
 
 
 @dp.message_handler(commands=['start'], state = '*')
@@ -33,15 +34,19 @@ async def menu(message: types.Message, state: FSMContext):
         elif message.text == 'Меню':
             await message.answer('menu', reply_markup=keyboards.menu())
         elif message.text == 'Поиск факультета':
-            await message.answer('Отправьте id университета факультеты которой вы хотите увидеть')
+            await message.answer('Отправьте ID университета факультеты которой вы хотите увидеть')
             await Univer.faculty.set()
         elif message.text == 'Поиск специальности':
-            await message.answer('Отправьте id факультета специальность которой вы хотите найти')
+            await message.answer('Отправьте ID факультета специальность которой вы хотите найти')
             await Univer.specialty.set()
         elif message.text == 'Контакты':
-            await message.answer('Отправьте id университета контакты которой вы хотите получить')
+            await message.answer('Отправьте ID университета контакты которой вы хотите получить')
             await Univer.contacts.set()
-   
+        elif message.text == 'Предметы для ОРТ':
+            await message.answer('Отправьте ID факультета для получения инофмации об ОРТ.')
+            await Univer.ort.set()
+        
+
         table = University.select().where(University.city == message.text)
         id_ = None
         title = None
@@ -101,6 +106,20 @@ async def contacts(message: types.Message, state: FSMContext):
         for x in contacts:
             await message.answer(x.body)
             # await Univer.univer.set()
+    except DoesNotExist:
+        return await Univer.univer.set()
+        return await message.answer('Попробуйте ещё раз.')
+    except MessageTextIsEmpty:
+        return await message.answer('Попробуйте ещё раз.')
+
+@dp.message_handler(state=Univer.ort, content_types=types.ContentTypes.ANY)
+async def ort(message: types.Message, state: FSMContext):
+    try:
+        faculty = Faculty.get(id=message.text)
+        ort = faculty.ort
+        for x in ort:
+            await message.answer(x.body)
+            await Univer.univer.set()
     except DoesNotExist:
         return await Univer.univer.set()
         return await message.answer('Попробуйте ещё раз.')

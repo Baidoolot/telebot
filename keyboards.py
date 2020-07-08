@@ -14,6 +14,6 @@ def menu():
     markup = ReplyKeyboardMarkup(True, True)
     markup.row('Поиск универиситета', 'Поиск факультета')
     markup.row('Поиск специальности')
-    markup.row('Контакты')
+    markup.row('Контакты', 'Предметы для ОРТ')
 
     return markup

@@ -1,4 +1,13 @@
-aiogram==2.9.2
-flask==3.0.7
-peewee==3.13.3
-PyMySQL==0.9.3
+aiogram
+Flask
+peewee
+sqlalchemy
+flask_sqlalchemy
+flask_migrate
+email-validator
+WTForms==2.3.1
+Flask-Admin==1.5.6
+Flask-Script==2.0.6
+Flask-Security==3.0.0
+Flask-Session==0.3.2
+mysql-connector-python==8.0.20
