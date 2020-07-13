@@ -1,0 +1,7 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+    {% for x in n %}
+    <a href="{{url_for('detail', pk=x.id)}}"><h3>{{x.title}}</h3</a>>
+    {% endfor %}
+{% endblock %}

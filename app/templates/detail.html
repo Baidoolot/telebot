@@ -2,6 +2,14 @@
 {% block title %} beatch {% endblock %}
 
 {% block content %}
-    <h3>{{univer.title}}</h3>
-    <h5>{{univer.body}}</h5>
+    <div class="container">
+        <h5 class='card-title mt-3'>{{univer.title}}</h5>
+        <p class='card-text mb-5 mt-5'>{{univer.body}}</p>
+    </div>
+    <h5 class="card-title">Факультеты:</h5>
+    <ul class="list-group list-group-flush">
+        {% for x in fac %}
+        <li class="list-group-item">{{x.title}}</li>
+        {% endfor %}
+    </ul>
 {% endblock %}
