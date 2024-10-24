@@ -10,4 +10,4 @@ Flask-Admin==1.5.6
 Flask-Script==2.0.6
 Flask-Security==3.0.0
 Flask-Session==0.3.2
-mysql-connector-python==8.0.20
+mysql-connector-python==9.1.0
